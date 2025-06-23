@@ -1,7 +1,7 @@
 # NestJS on Azure
 
 ## Live URL
-https://astha-test1.azurewebsites.net/
+https://astha-test2.azurewebsites.net/
 
 ## Steps Followed
 
