@@ -1,4 +1,4 @@
-name: Deploy to Azure App Service
+name: Build & Deploy NestJS to Azure
 
 on:
   push:
@@ -8,22 +8,23 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Login to Docker Hub
+      - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
-      - name: Build and Push Docker image
-        run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/nestjs-azure .
-          docker push ${{ secrets.DOCKER_USERNAME }}/nestjs-azure
+      - name: Build Docker image
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/nestjs-azure .
 
-      - name: Deploy to Azure Web App
+      - name: Push Docker image to Docker Hub
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/nestjs-azure
+
+      - name: Deploy to Azure Web App (App Service for Containers)
         uses: azure/webapps-deploy@v2
         with:
           app-name: astha-test2
-          slot-name: production
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          images: '${{ secrets.DOCKER_USERNAME }}/nestjs-azure'
+          images: ${{ secrets.DOCKER_USERNAME }}/nestjs-azure
