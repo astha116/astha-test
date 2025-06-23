@@ -33,6 +33,8 @@ az webapp create --resource-group astha-rg \
 
 8. Added health check
 <img width="848" alt="image" src="https://github.com/user-attachments/assets/7da8212e-2fc1-4d35-8c9b-fa25b4771905" />
+<img width="765" alt="image" src="https://github.com/user-attachments/assets/43297b40-b018-4741-96c3-b25094f1e8f2" />
+
 
 
 ## 🛠️ Troubleshooting
