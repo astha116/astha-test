@@ -9,4 +9,8 @@ export class AppController {
   getHello(): string {
     return 'Hello from NestJS deployed on Azure!';
   }
+  @Get('health')
+  healthCheck(): string {
+    return 'Healthy!';
+  }
 }
